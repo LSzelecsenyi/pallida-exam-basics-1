@@ -17,3 +17,11 @@
 - [in Python](python.md)
 - [in Java](java.md)
 - [in C#](cs.md)
+
+What is the constructor? When it is used? [2p]
+
+Your answer:
+
+The constructor is the special method which is used, when an object is initialized. you can create constructors with initial values, or the objects values can be given when the cunstructor is called.
+When a subclass' cunstructor is called, the constructor of its superclass is also called automatically
+If no user defined constructor is provided for a class, compiler initializes member variables to its default values.

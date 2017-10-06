@@ -60,5 +60,5 @@ public class FavouriteAnimals {
             System.out.println("Cannot copy, something went wrong...");
         }
     }
-    
+
 }
