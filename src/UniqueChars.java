@@ -10,6 +10,7 @@ public class UniqueChars {
     public static void main(String[] args) {
 
         System.out.println(uniqueCharacters("anagram"));
+
     }
 
     static ArrayList<Character> uniqueCharacters(String str) {
@@ -31,7 +32,8 @@ public class UniqueChars {
         String out = sb.toString();
         for (char c : out.toCharArray()) {
             uniqueChars.add(c);
-    }   return uniqueChars;
         }
+        return uniqueChars;
+    }
 
 }
