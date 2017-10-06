@@ -1,2 +1,7 @@
 dog
 cat
+snake
+shark
+chimp
+elephant
+rhino

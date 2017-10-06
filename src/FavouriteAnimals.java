@@ -7,6 +7,7 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class FavouriteAnimals {
     public static void main(String[] args) {
@@ -25,9 +26,7 @@ public class FavouriteAnimals {
 
         if (args.length == 0) {
             favourite.printUsage();
-        } else if (args.length == 1){
-            System.out.println("No animal provided");
-        } else if (args.length > 1){
+        } else if (args.length > 0){
             favourite.storeAnimal(args);
         }
 
@@ -40,24 +39,26 @@ public class FavouriteAnimals {
     public void storeAnimal(String[] args) {
         ArrayList<String> inputAnimals = new ArrayList<>();
         ArrayList<String> animalsInFile = new ArrayList<>();
-        for (int i = 1; i < args.length; i++) {
-            inputAnimals.add(i, args[i + 1]);
+        for (int i = 0; i < args.length; i++) {
+            inputAnimals.add(i, args[i]);
         }
+        List<String> inputAnimalsNoDuplicates = inputAnimals.stream().distinct().collect(Collectors.toList());
         try {
             Path myPath = Paths.get("favourites.txt");
             Scanner sc = new Scanner(new File("favourites.txt"));
             while (sc.hasNext()){
                 animalsInFile.add(sc.next());
             }
-            for (int i = 0; i < inputAnimals.size(); i++) {
-                if (animalsInFile.contains(inputAnimals.get(i))) {
-                    inputAnimals.remove(i);
+            for (int i = 0; i < inputAnimalsNoDuplicates.size(); i++) {
+                if (animalsInFile.contains(inputAnimalsNoDuplicates.get(i))) {
+                    inputAnimalsNoDuplicates.remove(i);
+                    i--;
                 }
             }
-            Files.write(myPath, inputAnimals, StandardOpenOption.APPEND);
+            Files.write(myPath, inputAnimalsNoDuplicates, StandardOpenOption.APPEND);
         } catch (IOException e) {
             System.out.println("Cannot copy, something went wrong...");
-
         }
     }
+    
 }
